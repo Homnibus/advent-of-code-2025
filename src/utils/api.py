@@ -26,7 +26,7 @@ COOKIES = {"session": SESSION}
 
 
 def get_instructions(day):
-    path = f"instructions/{day:02d}"
+    path = f"instructions/{day:02d}.instructions"
 
     if not exists(path):
         url = get_instructions_url(YEAR, day)
@@ -52,7 +52,7 @@ def get_instructions(day):
 
 
 def get_input(day):
-    path = f"inputs/{day:02d}"
+    path = f"inputs/{day:02d}.input"
 
     if not exists(path):
         url = get_input_url(YEAR, day)

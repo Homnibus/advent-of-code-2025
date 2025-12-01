@@ -2,21 +2,28 @@ import os
 
 base_link = "https://github.com/Homnibus/advent-of-code-2025/blob/main/src/"
 
+solutions = filter(
+    lambda x: ".py" in x and "init" not in x and "_" in x, os.listdir("src")
+)
+solutions = list(solutions)
 
-def parse(e):
-    name = e.replace(".py", "")
-    # name = " ".join(name.split("_")[1:])
-    return f"[{name}]({base_link}{e})"
+days = {}
+for sol in solutions:
+    day_num = sol.split("_")[0]
+    if day_num not in days:
+        days[day_num] = []
+    days[day_num].append(sol)
 
-
-solutions = filter(lambda x: ".py" in x and "init" not in x, os.listdir("src"))
-
-readme_content = "# Advent of code\nProblems list:\n"
-tmp = [f"{i+1}. {parse(e)}" for i, e in enumerate(sorted(solutions))]
-readme_content += "\n".join(tmp)
+readme_content = "# Advent of code 2025\n\n## Solutions\n\n"
+for day_num in sorted(days.keys()):
+    links = []
+    for file in sorted(days[day_num]):
+        part = file.split("_")[1].replace(".py", "")
+        links.append(f"[Part {part}]({base_link}{file})")
+    readme_content += f"**Day {int(day_num)}**: {' | '.join(links)}\n"
 
 with open("README.md", "w") as f:
     f.write(
         readme_content
-        + "\n\nCreated via: [advent-of-code-setup](https://github.com/tomfran/advent-of-code-setup)"
+        + "\n---\nInspired from: [advent-of-code-setup](https://github.com/tomfran/advent-of-code-setup)"
     )

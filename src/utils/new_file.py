@@ -1,13 +1,13 @@
 import os
 from api import get_instructions, get_input
 
-l = filter(lambda x: "__" not in x and ".py" in x, os.listdir("src"))
+l = filter(lambda x: "__" not in x and "_1.py" in x, os.listdir("src"))
 l = list(l)
 n = int(sorted(l)[-1][:2]) + 1 if len(l) > 0 else 1
 
 DEFAULT_FILE = f"from utils.api import get_input\n\ninput_str = get_input({n})\n\n# WRITE YOUR SOLUTION HERE\n\n"
 
-path = f"src/{n:02d}.py"
+path = f"src/{n:02d}_1.py"
 with open(path, "w") as f:
     f.write(DEFAULT_FILE)
 
