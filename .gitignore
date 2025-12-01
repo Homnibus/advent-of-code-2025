@@ -127,3 +127,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# VS Code settings
+.vscode
+
+# Project specific files
+session.cookie
+inputs
+instructions
+
